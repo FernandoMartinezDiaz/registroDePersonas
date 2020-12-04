@@ -65,7 +65,7 @@ const setupDatabaseTableAsync = async () => {
     });
 };
 
-export const db = {
+export const database = {
     getDatos,
     insertDatos,
     dropDataTableAsync,
