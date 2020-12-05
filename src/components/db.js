@@ -13,7 +13,7 @@ const getDatos = (setDatosFunc) => {
         tx.executeSql("select * from datos", [], (_, { rows: { _array }}) => { 
             setDatosFunc( _array ); 
         },(_t, error) => {console.log("Error al obtener los registros`"); console.log(error) },
-        (_t, _succes) => {
+        (_t, _success) => {
             console.log("registros obtenidos");
         }
        );
@@ -21,21 +21,21 @@ const getDatos = (setDatosFunc) => {
 };
 
 //Insertar registros
-const insertDatos = (datos, succesFunc) => {
+const insertDatos = (datos, successFunc) => {
   db.transaction((tx) => {
         tx.executeSql("insert into datos (dato) values {?}", [datos])
     }, (_t, error) => {
          console.log("error al ingresar el dato"); 
          console.log(error);
     },
-    (_t, _succes) => {
-        succesFunc;
+    (_t, _success) => {
+        successFunc;
     }
   );
 };
 
 //borrar la base de datos
-const dropDataTableAsync = async () => {
+const dropDatabaseTableAsync = async () => {
     return new Promise((resolve, reject) =>{
         db.transaction((tx) => {
             tx.executeSql("drop table datos")
@@ -52,14 +52,37 @@ const dropDataTableAsync = async () => {
 const setupDatabaseTableAsync = async () => {
     return new Promise((resolve, reject) => {
         db.transaction((tx) => {
-            tx.executeSql("Create table if not exist datos (id integer primary key no null, dato text)"
+            tx.executeSql("Create table if not exists datos (id integer primary key not null, dato text)"
            );
-        }, (_t, error) => { console.log("error al momento de crear la tabla"); 
+        }, 
+        (_t, error) => { 
+            console.log("error al momento de crear la tabla"); 
             console.log(error);
             reject(error);
         },
-        (_t, succes) => {
-            resolve(succes);
+        (_t, success) => {
+            resolve(success);
+        }
+      );
+    });
+};
+
+//agregar un registro por defecto
+const setupDatosAsync = async () => {
+    return new Promise((resolve, reject) => {
+        db.transaction((tx) => {
+            tx.executeSql("insert into datos (id, dato) values (?, ?)",[
+                1,
+                 "Bienvenido a registro",
+                ]);
+        },
+        (_t, error) => {
+            console.log("Error al momento insertar los valores por defscto");
+            console.log(error); 
+            reject(error);
+        },
+        (_t, success) =>{
+            resolve(success);
         }
       );
     });
@@ -68,6 +91,7 @@ const setupDatabaseTableAsync = async () => {
 export const database = {
     getDatos,
     insertDatos,
-    dropDataTableAsync,
+    dropDatabaseTableAsync,
     setupDatabaseTableAsync,
+    setupDatosAsync,
 }

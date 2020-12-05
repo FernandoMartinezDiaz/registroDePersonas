@@ -1,8 +1,9 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {   View } from 'react-native';
 import * as SplashScreen from "expo-splash-screen";
 import useDatabase from "./src/hooks/useDatabase";
+import {DatosContextProvider} from "./src/context/DatosContext";
+import ListaRegistroScreen from './src/screens/ListaRegistrosScreen';
 
 
 export default function App() {
@@ -14,18 +15,11 @@ export default function App() {
   if (isLoadingComplete) SplashScreen.hideAsync();
 
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <View>
+      <DatosContextProvider> 
+       <ListaRegistroScreen/>
+      </DatosContextProvider>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+ 
