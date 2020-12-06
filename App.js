@@ -3,7 +3,7 @@ import {   View } from 'react-native';
 import * as SplashScreen from "expo-splash-screen";
 import useDatabase from "./src/hooks/useDatabase";
 import {DatosContextProvider} from "./src/context/DatosContext";
-import ListaRegistroScreen from './src/screens/ListaRegistrosScreen';
+import ListaRegistrosScreen from "./src/screens/ListaRegistrosScreen";
 
 
 export default function App() {
@@ -17,9 +17,9 @@ export default function App() {
   return (
     <View>
       <DatosContextProvider> 
-       <ListaRegistroScreen/>
+         <ListaRegistrosScreen/>
       </DatosContextProvider>
     </View>
   );
-}
+};
  
