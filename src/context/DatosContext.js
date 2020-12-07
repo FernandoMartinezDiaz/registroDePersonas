@@ -24,7 +24,7 @@ export const DatosContextProvider = props =>{
         return database.getDatos(setDatos);
     };
 
-    const addNewDato = (datos) =>{
+    const addNewDato = (id, dato, successFun) =>{
         return database.insertDatos(datos, refreshDatos);
     };
 

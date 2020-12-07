@@ -23,9 +23,30 @@ export default function App() {
     <View style = {{ flex: 1 }}>
       <DatosContextProvider> 
           <NavigationContainer>
-            <Stack.Navigator initialRouteName= "listaRegistro">
-              <Stack.Screen name = "listaRegistro" component = { ListaRegistrosScreen } />
-              <Stack.Screen name = "listCreate" component = { ListCreateScreen }/>
+            <Stack.Navigator initialRouteName= "listaRegistro" >
+              <Stack.Screen 
+              name = "listaRegistro" 
+              component = { ListaRegistrosScreen }
+              options={{
+                title: "Registro de personas",
+                headerStyle: {
+                  backgroundColor: "#98F28E",
+                },
+                headerTitleAlign: "center",
+                
+              }}
+               />
+              <Stack.Screen 
+              name = "listCreate" 
+              component = { ListCreateScreen }
+              options={{
+                title: "Registrar",
+                headerStyle: {
+                backgroundColor: "#98F28E",
+                },
+                headerTitleAlign: "center",
+              }}
+              />
             </Stack.Navigator>
           </NavigationContainer>
       </DatosContextProvider>

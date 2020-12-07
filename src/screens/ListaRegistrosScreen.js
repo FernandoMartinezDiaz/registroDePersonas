@@ -10,7 +10,7 @@ const ListaRegistrosScreen = ( {navigation} ) =>{
     const {datos} = useContext (DatosContext);
     console.log(datos);
     return(
-        <Container>
+        <Container >
             <Content>
                 <List>
                     {datos ? datos.map((dato) => (
@@ -23,11 +23,11 @@ const ListaRegistrosScreen = ( {navigation} ) =>{
                 <Fab 
                  active= { true }
                  position = "bottomRight"
-                 style={{ backgroundColor: "#ff0023" }}
+                 style={{ backgroundColor: "#98F28E" }}
                  direction="up"
                  onPress={() => {navigation.navigate("listCreate"); }} 
                 >
-                 <Icon name="plus" type="FontAwesome" />
+                 <Icon name="user-plus" type="Feather" />
                 </Fab>
             </Content>
         </Container>

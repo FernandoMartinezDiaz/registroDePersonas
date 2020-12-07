@@ -29,7 +29,7 @@ const getDatos = (setDatosFunc) => {
 //Insertar registros
 const insertDatos = (dato, successFunc) => {
   db.transaction((tx) => {
-        tx.executeSql("insert into datos (dato) values (?)", [dato]);
+        tx.executeSql("insert into datos (id, dato) values (?,?)", [id, dato]);
     }, 
     (_t, error) => {
          console.log("error al insertar el dato"); 
@@ -85,7 +85,8 @@ const setupDatabaseTableAsync = async () => {
 const setupDatosAsync = async () => {
   return new Promise((resolve, reject) => {
     db.transaction((tx) => {
-      tx.executeSql("insert into datos (dato) values (?)",[
+      tx.executeSql("insert into datos (id, dato) values (?, ?)",[
+        2,
         "debo avanzar en la app",
       ]);
       },
