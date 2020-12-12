@@ -24,8 +24,8 @@ export const DatosContextProvider = props =>{
         return database.getDatos(setDatos);
     };
 
-    const addNewDato = ( dato) =>{
-        return database.insertDatos(dato, refreshDatos);
+    const addNewDato = ( nombrePersona, fechaDeNacimiento, lugarDeNacimiento) =>{
+        return database.insertDatos( nombrePersona, fechaDeNacimiento, lugarDeNacimiento, refreshDatos);
     };
 
     //Crear el objeto de contexto

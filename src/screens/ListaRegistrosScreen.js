@@ -15,7 +15,10 @@ const ListaRegistrosScreen = ( {navigation} ) =>{
                 <List>
                     {datos ? datos.map((dato) => (
                         <ListItem key={dato.id}>
-                            <Text>{dato.dato}</Text>
+                            <Text>{dato.id}</Text>
+                            <Text>{dato.nombrePersona}</Text>
+                            <Text>{dato.fechaDeNacimiento}</Text>
+                            <Text>{dato.lugarDeNacimiento}</Text>
                         </ListItem>
                     ))
                     : null}
