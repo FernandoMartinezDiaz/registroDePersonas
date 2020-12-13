@@ -1,41 +1,79 @@
 import React, { useContext, useState } from "react";
 import { StyleSheet } from "react-native";
-import { Button, Container, Content, Form, H1, Textarea, Text, Spinner } from 'native-base';
-import { useFonts, Roboto_500Medium} from "@expo-google-fonts/inter";
+import { Button, Container, Content,H1,Text, Spinner, View, Item, Input } from 'native-base';
+import * as Font from "expo-font";
 
 //Importar el contexto de las notas 
 import {DatosContext} from "../context/DatosContext";
+import { useEffect } from "react/cjs/react.development";
 
 const ListCreateScreen = ({navigation}) => {
-    const [dato, setDato] = useState("");
+    const [nombrePersona, setNombrePersona] = useState("");
+    const [fechaDeNacimiento, setfechaDeNacimiento]= useState("");
+    const [lugarDeNacimiento, setlugarDeNacimiento]= useState("");
+    const [fontsLoaded, setFontsLoaded]= useState(false);
     const datosContext = useContext(DatosContext);
     const {addNewDato, refreshDatos } = datosContext;
 
     //Arreglar la fuente de manera asincrona
-    const [fontsLoaded] = useFonts({
-      Roboto_500Medium,
-    });
+   
+    useEffect(()=>{
+      const loadFontsAsync = async () => {
+        await Font.loadAsync({
+          Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
+        }).then(()=>{
+          setFontsLoaded(true);
+        });
+      };
+      loadFontsAsync();
+    }, []);
+
+     
 
     const handlerNewDato = () =>{
-      addNewDato(dato, refreshDatos); 
+      addNewDato(nombrePersona,fechaDeNacimiento,lugarDeNacimiento, refreshDatos); 
 
       //Regresar a la pantalla anterior
       navigation.goBack();
 
     };
 
-    //if (!fontsLoaded) return <Spinner color="blue"/>; 
+    if (!fontsLoaded) 
+      return (
+        <Content contentContainerStyle = {{ flex: 1, justifyContent: "center"}}>
+          <Spinner color="blue" />
+        </Content>
+      );
  
     return(
       <Content> 
         <Container>
-           <H1>Ingresa el registro</H1>
-           <Textarea  rowSpan={5} bordered placeholder="Escribir la información" value={dato} onChangeText={setDato}/>
-           <Button onPress={handlerNewDato}>
-             <Text>
-                Guardar
-             </Text>
-           </Button>
+          <View>
+            <H1>Ingresa el registro</H1>
+            <Item>
+                <Input  
+                  placeholder="Escribir el nombre de la persona" 
+                  value={nombrePersona} 
+                  onChangeText={setNombrePersona}/>
+              </Item>
+              <Item>
+                <Input  
+                  placeholder="Escribir la fecha de nacimiento" 
+                  value={fechaDeNacimiento} 
+                  onChangeText={setfechaDeNacimiento}/>
+              </Item>
+              <Item>
+                <Input  
+                  placeholder="Escribir el lugar de nacimiento" 
+                  value={lugarDeNacimiento} 
+                  onChangeText={setlugarDeNacimiento}/>
+              </Item>
+            <Button onPress={handlerNewDato}>
+              <Text>
+                  Guardar
+              </Text>
+            </Button>
+          </View>
         </Container>
       </Content>
     );
