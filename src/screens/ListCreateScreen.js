@@ -11,6 +11,9 @@ const ListCreateScreen = ({navigation}) => {
     const [nombrePersona, setNombrePersona] = useState("");
     const [fechaDeNacimiento, setfechaDeNacimiento]= useState("");
     const [lugarDeNacimiento, setlugarDeNacimiento]= useState("");
+    const [id, setId]=useState("");
+    const [enablesave, setEnablesave]= useState(true);
+    const [erroDatos, setErrorDatos]= useState(false);
     const [fontsLoaded, setFontsLoaded]= useState(false);
     const datosContext = useContext(DatosContext);
     const {addNewDato, refreshDatos } = datosContext;
@@ -28,11 +31,20 @@ const ListCreateScreen = ({navigation}) => {
       loadFontsAsync();
     }, []);
 
+    //ejecutar el efecto cuando los valores cambian.
+
+    useEffect(()=>{
+      if(id,nombrePersona,fechaDeNacimiento,lugarDeNacimiento) setEnablesave(false);
+      else setEnablesave(true);
+    },[id,nombrePersona,fechaDeNacimiento,lugarDeNacimiento]);
+
      
 
     const handlerNewDato = () =>{
-      addNewDato(nombrePersona,fechaDeNacimiento,lugarDeNacimiento, refreshDatos); 
+      addNewDato(id,nombrePersona,fechaDeNacimiento,lugarDeNacimiento, refreshDatos); 
 
+      //Refrescar datos
+      refreshDatos();
       //Regresar a la pantalla anterior
       navigation.goBack();
 
@@ -52,6 +64,12 @@ const ListCreateScreen = ({navigation}) => {
             <H1>Ingresa el registro</H1>
             <Item>
                 <Input  
+                  placeholder="Escribir su numero de identidad" 
+                  value={id} 
+                  onChangeText={setId}/>
+              </Item>
+            <Item>
+                <Input  
                   placeholder="Escribir el nombre de la persona" 
                   value={nombrePersona} 
                   onChangeText={setNombrePersona}/>
@@ -68,8 +86,9 @@ const ListCreateScreen = ({navigation}) => {
                   value={lugarDeNacimiento} 
                   onChangeText={setlugarDeNacimiento}/>
               </Item>
-            <Button onPress={handlerNewDato}>
-              <Text>
+            <Button style={styles.button}
+              onPress={handlerNewDato} disabled={enablesave}>
+              <Text style={{ color: '#000000'}} >
                   Guardar
               </Text>
             </Button>
@@ -79,6 +98,14 @@ const ListCreateScreen = ({navigation}) => {
     );
 };
 
-const styles = StyleSheet.create ({});
+const styles = StyleSheet.create ({
+
+  button:{
+    marginTop: 10,
+    backgroundColor: "#98F28E",
+    
+  },
+
+});
 
 export default ListCreateScreen;

@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
-import { StyleSheet} from "react-native";
-import { Container, Content, Fab, Icon, List, ListItem, Text } from "native-base";
+import { StyleSheet, TouchableOpacity } from "react-native";
+import { Card, CardItem, Container, Content, Fab, Icon, List, ListItem, Text, View } from "native-base";
 
 //Utilizar el contexto de registros
 import { DatosContext} from "../context/DatosContext";
+
 
 
 const ListaRegistrosScreen = ( {navigation} ) =>{
@@ -14,16 +15,29 @@ const ListaRegistrosScreen = ( {navigation} ) =>{
             <Content>
                 <List>
                     {datos ? datos.map((dato) => (
-                        <ListItem key={dato.id}>
-                            <Text>{dato.id}</Text>
-                            <Text>{dato.nombrePersona}</Text>
-                            <Text>{dato.fechaDeNacimiento}</Text>
-                            <Text>{dato.lugarDeNacimiento}</Text>
-                        </ListItem>
+                     <View key={dato.id}> 
+                            <TouchableOpacity onPress={()=>{navigation.navigate("listModify", {id: dato.id})}}>
+                                <Card>
+                                    <CardItem >
+                                        <Text>{dato.id}</Text>
+                                    </CardItem> 
+                                    <CardItem >
+                                        <Text>{dato.nombrePersona}</Text>
+                                    </CardItem> 
+                                    <CardItem >
+                                        <Text>{dato.fechaDeNacimiento}</Text> 
+                                    </CardItem> 
+                                    <CardItem >
+                                        <Text>{dato.lugarDeNacimiento}</Text> 
+                                    </CardItem> 
+                                </Card>  
+                            </TouchableOpacity> 
+                     </View>  
                     ))
-                    : null}
+                    : null} 
                 </List>
-                <Fab 
+            </Content>
+            <Fab 
                  active= { true }
                  position = "bottomRight"
                  style={{ backgroundColor: "#98F28E" }}
@@ -32,12 +46,13 @@ const ListaRegistrosScreen = ( {navigation} ) =>{
                 >
                  <Icon name="user-plus" type="Feather" />
                 </Fab>
-            </Content>
         </Container>
     );
 
 };
 
-const styles = StyleSheet.create ({});
+const styles = StyleSheet.create ({
+
+});
   
 export default ListaRegistrosScreen;

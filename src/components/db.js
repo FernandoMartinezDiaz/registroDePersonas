@@ -27,9 +27,9 @@ const getDatos = (setDatosFunc) => {
 };   
 
 //Insertar registros
-const insertDatos = (nombrePersona, fechaDeNacimiento, lugarDeNacimiento, successFunc) => {
+const insertDatos = (id,nombrePersona, fechaDeNacimiento, lugarDeNacimiento, successFunc) => {
   db.transaction((tx) => {
-        tx.executeSql("insert into datos (nombrePersona, fechaDeNacimiento, lugarDeNacimiento) values (?,?,?)", [nombrePersona, fechaDeNacimiento, lugarDeNacimiento]);
+        tx.executeSql("insert into datos (id,nombrePersona, fechaDeNacimiento, lugarDeNacimiento) values (?,?,?,?)", [id,nombrePersona, fechaDeNacimiento, lugarDeNacimiento]);
     }, 
     (_t, error) => {
          console.log("error al insertar el dato"); 
@@ -65,7 +65,7 @@ const setupDatabaseTableAsync = async () => {
     db.transaction(
       (tx) => {
         tx.executeSql(
-          "create table if not exists datos (id integer primary key autoincrement, nombrePersona text not null, fechaDeNacimiento text not null, lugarDeNacimiento text not null);"
+          "create table if not exists datos (id integer primary key , nombrePersona text not null, fechaDeNacimiento text not null, lugarDeNacimiento text not null);"
         );
       },
       (_t, error) => {
@@ -85,7 +85,7 @@ const setupDatabaseTableAsync = async () => {
 const setupDatosAsync = async () => {
   return new Promise((resolve, reject) => {
     db.transaction((tx) => {
-      tx.executeSql("insert into datos ( nombrePersona, fechaDeNacimiento, lugarDeNacimiento) values (?,?,?)",["HOLA", "HOLA","HOLA"
+      tx.executeSql("insert into datos ( id, nombrePersona, fechaDeNacimiento, lugarDeNacimiento) values (?,?,?,?)",[1,"HOLA", "HOLA","HOLA"
       ]);
       },
       (_t, error) => {

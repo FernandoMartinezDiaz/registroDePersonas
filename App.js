@@ -7,6 +7,7 @@ import {DatosContextProvider} from "./src/context/DatosContext";
 import ListaRegistrosScreen from "./src/screens/ListaRegistrosScreen";
 import { createStackNavigator } from "@react-navigation/stack";
 import ListCreateScreen from "./src/screens/ListCreateScreen";
+import ListModifyScreen from "./src/screens/ListModifyScreen";
 
 const Stack = createStackNavigator();
 
@@ -47,6 +48,7 @@ export default function App() {
                 headerTitleAlign: "center",
               }}
               />
+              <Stack.Screen name="listModify" component={ListModifyScreen}/>
             </Stack.Navigator>
           </NavigationContainer>
       </DatosContextProvider>

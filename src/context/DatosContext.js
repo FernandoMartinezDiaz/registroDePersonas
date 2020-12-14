@@ -15,7 +15,7 @@ export const DatosContextProvider = props =>{
     //almacenar los valores en el estado 
     const [datos, setDatos] = useState(initialDatos);
 
-    //Agregar u obtener los datos 
+    //cargar u obtener los datos 
     useEffect (() =>{
         refreshDatos();
     }, []); 
@@ -24,8 +24,8 @@ export const DatosContextProvider = props =>{
         return database.getDatos(setDatos);
     };
 
-    const addNewDato = ( nombrePersona, fechaDeNacimiento, lugarDeNacimiento) =>{
-        return database.insertDatos( nombrePersona, fechaDeNacimiento, lugarDeNacimiento, refreshDatos);
+    const addNewDato = ( id,nombrePersona, fechaDeNacimiento, lugarDeNacimiento) =>{
+        return database.insertDatos(id, nombrePersona, fechaDeNacimiento, lugarDeNacimiento, refreshDatos);
     };
 
     //Crear el objeto de contexto
