@@ -48,7 +48,15 @@ export default function App() {
                 headerTitleAlign: "center",
               }}
               />
-              <Stack.Screen name="listModify" component={ListModifyScreen}/>
+              <Stack.Screen name="listModify" component={ListModifyScreen} 
+              options= {{ 
+                title: "Modificar",
+                headerStyle: {
+                backgroundColor: "#98F28E",
+                },
+                headerTitleAlign: "center",  
+               }}
+              />
             </Stack.Navigator>
           </NavigationContainer>
       </DatosContextProvider>

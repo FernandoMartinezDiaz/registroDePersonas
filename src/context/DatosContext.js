@@ -35,6 +35,11 @@ export const DatosContextProvider = props =>{
         addNewDato
     };
 
+    //
+    const getDatoById = (id) => {
+        setDatos(database.getDatoById(id));
+    }
+
     //pasar los valores al proveedor y retornarlos
     return(
         <DatosContext.Provider value={datosContext}>
