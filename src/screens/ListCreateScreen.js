@@ -40,8 +40,8 @@ const ListCreateScreen = ({navigation}) => {
 
      
 
-    const handlerNewDato = () =>{
-      addNewDato(id,nombrePersona,fechaDeNacimiento,lugarDeNacimiento, refreshDatos); 
+    const handlerNewDato = async () =>{
+      await addNewDato(id,nombrePersona,fechaDeNacimiento,lugarDeNacimiento, refreshDatos); 
 
       //Refrescar datos
       //refreshDatos();

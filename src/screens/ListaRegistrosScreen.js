@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { StyleSheet, TouchableOpacity, Image } from "react-native";
-import { Card, CardItem, Container, Content, Fab, Icon, List, ListItem, Text, View } from "native-base";
+import { Body, Card, CardItem, Container, Content, Fab, Icon, List, ListItem, Right, Text, View } from "native-base";
 
 //Utilizar el contexto de registros
 import { DatosContext} from "../context/DatosContext";
@@ -21,18 +21,24 @@ const ListaRegistrosScreen = ( {navigation} ) =>{
                      <View key={dato.id}> 
                             <TouchableOpacity onPress={()=>{navigation.navigate("listModify", {id: dato.id})}}>
                                 <Card>
-                                    <CardItem >
-                                        <Text>{dato.id}</Text>
-                                    </CardItem> 
-                                    <CardItem >
-                                        <Text>{dato.nombrePersona}</Text>
-                                    </CardItem> 
-                                    <CardItem >
-                                        <Text>{dato.fechaDeNacimiento}</Text> 
-                                    </CardItem> 
-                                    <CardItem >
-                                        <Text>{dato.lugarDeNacimiento}</Text> 
-                                    </CardItem> 
+                                    
+                                        <CardItem >
+                                            <Body>
+                                                <Text>{dato.id}</Text>
+                                            </Body>
+                                            <Right>
+                                                <Icon name ="arrow-forward"/>
+                                            </Right>
+                                        </CardItem> 
+                                        <CardItem >
+                                            <Text>{dato.nombrePersona}</Text>
+                                        </CardItem> 
+                                        <CardItem >
+                                            <Text>{dato.fechaDeNacimiento}</Text> 
+                                        </CardItem> 
+                                        <CardItem >
+                                            <Text>{dato.lugarDeNacimiento}</Text> 
+                                        </CardItem> 
                                 </Card>  
                             </TouchableOpacity> 
                      </View>  
