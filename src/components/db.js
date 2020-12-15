@@ -27,7 +27,7 @@ const getDatos = (setDatosFunc) => {
 };   
 
 //Insertar registros
-const insertDatos = (id,nombrePersona, fechaDeNacimiento, lugarDeNacimiento, successFunc) => {
+const insertDatos = async (id,nombrePersona, fechaDeNacimiento, lugarDeNacimiento, successFunc) => {
   db.transaction((tx) => {
         tx.executeSql("insert into datos (id,nombrePersona, fechaDeNacimiento, lugarDeNacimiento) values (?,?,?,?)", [id,nombrePersona, fechaDeNacimiento, lugarDeNacimiento]);
     }, 

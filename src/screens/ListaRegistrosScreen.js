@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { StyleSheet, TouchableOpacity, Image } from "react-native";
 import { Card, CardItem, Container, Content, Fab, Icon, List, ListItem, Text, View } from "native-base";
 
 //Utilizar el contexto de registros
@@ -12,6 +12,9 @@ const ListaRegistrosScreen = ( {navigation} ) =>{
     console.log(datos);
     return(
         <Container >
+            <Image source={require("../../assets/registro_logo.png")} 
+            style={styles.imagenLogo}
+            />
             <Content>
                 <List>
                     {datos ? datos.map((dato) => (
@@ -52,6 +55,12 @@ const ListaRegistrosScreen = ( {navigation} ) =>{
 };
 
 const styles = StyleSheet.create ({
+    imagenLogo: {
+        width: 100,
+        height: 100,
+        //alignItems: "center",
+        //justifyContent: "center",
+    },
 
 });
   

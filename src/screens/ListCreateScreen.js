@@ -44,7 +44,7 @@ const ListCreateScreen = ({navigation}) => {
       addNewDato(id,nombrePersona,fechaDeNacimiento,lugarDeNacimiento, refreshDatos); 
 
       //Refrescar datos
-      refreshDatos();
+      //refreshDatos();
       //Regresar a la pantalla anterior
       navigation.goBack();
 
