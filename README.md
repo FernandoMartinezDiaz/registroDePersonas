@@ -1,5 +1,4 @@
-# Aplicacion Registro de persona.
-Esta es una Aplicacion de manera local en la cual llevamos un control de personas asi tomando en cuenta sus datos personales y asi poder llevar un control de personas registradas.
+
 <img src="assets/registro_logo.png">
 
 # Aplicacion Registro de persona."
